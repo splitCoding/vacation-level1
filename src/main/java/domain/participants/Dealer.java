@@ -1,6 +1,7 @@
 package domain.participants;
 
 import domain.deck.card.Card;
+import domain.participants.attributes.Hand;
 import java.util.List;
 
 public class Dealer implements Participant {
@@ -39,7 +40,7 @@ public class Dealer implements Participant {
     public List<Card> getHand() {
         return hand.getCards();
     }
-    
+
     public int getScore() {
         return hand.getScore();
     }

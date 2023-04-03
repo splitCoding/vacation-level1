@@ -1,6 +1,8 @@
 package domain.participants;
 
 import domain.deck.card.Card;
+import domain.participants.attributes.Hand;
+import domain.participants.attributes.PlayerStatus;
 import java.util.List;
 
 public class Player implements Participant {
@@ -33,7 +35,7 @@ public class Player implements Participant {
     public boolean canGetMoreCard() {
         return hand.getStatus() == PlayerStatus.HIT;
     }
-    
+
     public List<Card> getHand() {
         return hand.getCards();
     }

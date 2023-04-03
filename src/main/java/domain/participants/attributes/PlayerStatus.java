@@ -1,4 +1,4 @@
-package domain.participants;
+package domain.participants.attributes;
 
 public enum PlayerStatus {
     HIT,
