@@ -3,6 +3,7 @@ package domain.participants.attributes.hand;
 public enum GameCondition {
     HIT,
     BLACKJACK,
+    STAND,
     BUST;
 
     private static final int BLACKJACK_SCORE = 21;

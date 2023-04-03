@@ -19,6 +19,10 @@ public class Hand {
     }
 
     public void addCard(final Card card) {
+        if (card == null) {
+            score = score.stay();
+            return;
+        }
         cards.add(card);
         updateScore();
     }

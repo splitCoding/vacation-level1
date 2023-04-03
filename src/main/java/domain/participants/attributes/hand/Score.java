@@ -21,6 +21,10 @@ public class Score {
         return new Score(score, gameCondition);
     }
 
+    public Score stay() {
+        return new Score(this.score, GameCondition.STAND);
+    }
+
     private static int calculateScore(final List<Card> cards) {
         int score = 0;
         for (Card card : cards) {
