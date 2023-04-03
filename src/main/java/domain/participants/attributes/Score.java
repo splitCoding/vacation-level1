@@ -8,17 +8,17 @@ public class Score {
     private static final int BLACKJACK_SCORE = 21;
     private static final int ACE_BONUS_SCORE = 10;
     private final int score;
-    private final PlayerStatus playerStatus;
+    private final GameCondition gameCondition;
 
-    private Score(final int score, final PlayerStatus playerStatus) {
+    private Score(final int score, final GameCondition gameCondition) {
         this.score = score;
-        this.playerStatus = playerStatus;
+        this.gameCondition = gameCondition;
     }
 
     public static Score of(final List<Card> cards) {
         final int score = calculateScore(cards);
-        final PlayerStatus playerStatus = PlayerStatus.find(score);
-        return new Score(score, playerStatus);
+        final GameCondition gameCondition = GameCondition.find(score);
+        return new Score(score, gameCondition);
     }
 
     private static int calculateScore(final List<Card> cards) {
@@ -41,7 +41,7 @@ public class Score {
         return score;
     }
 
-    public PlayerStatus getPlayerStatus() {
-        return playerStatus;
+    public GameCondition getGameCondition() {
+        return gameCondition;
     }
 }

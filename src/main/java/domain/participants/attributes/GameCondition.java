@@ -1,11 +1,11 @@
 package domain.participants.attributes;
 
-public enum PlayerStatus {
+public enum GameCondition {
     HIT,
     BLACKJACK,
     BUST;
 
-    public static PlayerStatus find(int score) {
+    public static GameCondition find(int score) {
         if (score > 21) {
             return BUST;
         }

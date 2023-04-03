@@ -35,7 +35,7 @@ public class Hand {
         return score.getScore();
     }
 
-    public PlayerStatus getStatus() {
-        return score.getPlayerStatus();
+    public GameCondition getGameCondition() {
+        return score.getGameCondition();
     }
 }

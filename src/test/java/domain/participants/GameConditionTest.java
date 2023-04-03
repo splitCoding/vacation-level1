@@ -1,12 +1,12 @@
 package domain.participants;
 
-import domain.participants.attributes.PlayerStatus;
+import domain.participants.attributes.GameCondition;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class PlayerStatusTest {
+class GameConditionTest {
 
     @DisplayName("점수에 따른 참가자의 상태를 반환한다.")
     @ParameterizedTest(name = "{0}점은 {1}이다.")
@@ -15,8 +15,8 @@ class PlayerStatusTest {
         "21:BLACKJACK",
         "22:BUST",
     }, delimiter = ':')
-    void find(int score, PlayerStatus expectedStatus) {
-        PlayerStatus playerStatus = PlayerStatus.find(score);
-        Assertions.assertThat(playerStatus).isEqualTo(expectedStatus);
+    void find(int score, GameCondition expectedCondition) {
+        GameCondition gameCondition = GameCondition.find(score);
+        Assertions.assertThat(gameCondition).isEqualTo(expectedCondition);
     }
 }

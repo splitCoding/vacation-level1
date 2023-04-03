@@ -1,8 +1,8 @@
 package domain.participants;
 
 import domain.deck.card.Card;
+import domain.participants.attributes.GameCondition;
 import domain.participants.attributes.Hand;
-import domain.participants.attributes.PlayerStatus;
 import java.util.List;
 
 public class Player implements Participant {
@@ -33,7 +33,7 @@ public class Player implements Participant {
 
     @Override
     public boolean canGetMoreCard() {
-        return hand.getStatus() == PlayerStatus.HIT;
+        return hand.getGameCondition() == GameCondition.HIT;
     }
 
     public List<Card> getHand() {
