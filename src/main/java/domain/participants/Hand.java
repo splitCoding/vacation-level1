@@ -34,4 +34,8 @@ public class Hand {
     public int getScore() {
         return score.getScore();
     }
+
+    public PlayerStatus getStatus() {
+        return score.getPlayerStatus();
+    }
 }
