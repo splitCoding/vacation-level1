@@ -9,7 +9,7 @@ public class Hand {
     private final List<Card> cards;
     private Score score;
 
-    public Hand(List<Card> cards) {
+    public Hand(final List<Card> cards) {
         this.cards = new ArrayList<>(cards);
         this.score = Score.of(cards);
     }
@@ -18,7 +18,7 @@ public class Hand {
         return new Hand(List.of());
     }
 
-    public void addCard(Card card) {
+    public void addCard(final Card card) {
         cards.add(card);
         updateScore();
     }

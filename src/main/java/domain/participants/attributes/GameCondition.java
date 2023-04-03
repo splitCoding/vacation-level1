@@ -5,11 +5,13 @@ public enum GameCondition {
     BLACKJACK,
     BUST;
 
-    public static GameCondition find(int score) {
-        if (score > 21) {
+    private static final int BLACKJACK_SCORE = 21;
+
+    public static GameCondition find(final int score) {
+        if (score > BLACKJACK_SCORE) {
             return BUST;
         }
-        if (score == 21) {
+        if (score == BLACKJACK_SCORE) {
             return BLACKJACK;
         }
         return HIT;
