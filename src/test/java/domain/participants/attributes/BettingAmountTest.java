@@ -1,5 +1,6 @@
 package domain.participants.attributes;
 
+import domain.participants.attributes.bettingCondition.BettingAmount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package domain.participants;
 
 import domain.deck.card.Card;
-import domain.participants.attributes.GameCondition;
-import domain.participants.attributes.Score;
+import domain.participants.attributes.hand.GameCondition;
+import domain.participants.attributes.hand.Score;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

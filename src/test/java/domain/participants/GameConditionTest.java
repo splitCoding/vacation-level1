@@ -1,6 +1,6 @@
 package domain.participants;
 
-import domain.participants.attributes.GameCondition;
+import domain.participants.attributes.hand.GameCondition;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

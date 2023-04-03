@@ -1,10 +1,10 @@
 package domain.participants;
 
 import domain.deck.card.Card;
-import domain.participants.attributes.BettingAmount;
-import domain.participants.attributes.BettingCondition;
-import domain.participants.attributes.GameCondition;
-import domain.participants.attributes.Hand;
+import domain.participants.attributes.bettingCondition.BettingAmount;
+import domain.participants.attributes.bettingCondition.BettingCondition;
+import domain.participants.attributes.hand.GameCondition;
+import domain.participants.attributes.hand.Hand;
 import java.util.List;
 
 public class Player implements Participant {

@@ -1,7 +1,7 @@
 package domain.participants;
 
 import domain.deck.card.Card;
-import domain.participants.attributes.BettingAmount;
+import domain.participants.attributes.bettingCondition.BettingAmount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

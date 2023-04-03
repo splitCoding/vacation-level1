@@ -1,4 +1,4 @@
-package domain.participants.attributes;
+package domain.participants.attributes.bettingCondition;
 
 public final class BettingAmount {
 

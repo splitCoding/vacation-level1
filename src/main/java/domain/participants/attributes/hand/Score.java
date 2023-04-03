@@ -1,4 +1,4 @@
-package domain.participants.attributes;
+package domain.participants.attributes.hand;
 
 import domain.deck.card.Card;
 import java.util.List;

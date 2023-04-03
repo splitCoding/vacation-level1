@@ -1,4 +1,4 @@
-package domain.participants.attributes;
+package domain.participants.attributes.hand;
 
 public enum GameCondition {
     HIT,

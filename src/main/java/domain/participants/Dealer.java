@@ -1,7 +1,7 @@
 package domain.participants;
 
 import domain.deck.card.Card;
-import domain.participants.attributes.Hand;
+import domain.participants.attributes.hand.Hand;
 import java.util.List;
 
 public class Dealer implements Participant {

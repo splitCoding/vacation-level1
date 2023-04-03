@@ -1,4 +1,6 @@
-package domain.participants.attributes;
+package domain.participants.attributes.bettingCondition;
+
+import domain.participants.attributes.hand.GameCondition;
 
 public final class BettingCondition {
 

@@ -1,4 +1,4 @@
-package domain.participants.attributes;
+package domain.participants.attributes.bettingCondition;
 
 import java.util.function.Function;
 
