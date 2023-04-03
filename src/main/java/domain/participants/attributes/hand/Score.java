@@ -17,7 +17,7 @@ public class Score {
 
     public static Score of(final List<Card> cards) {
         final int score = calculateScore(cards);
-        final GameCondition gameCondition = GameCondition.find(score);
+        final GameCondition gameCondition = GameCondition.find(score, cards.size());
         return new Score(score, gameCondition);
     }
 

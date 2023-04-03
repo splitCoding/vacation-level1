@@ -7,11 +7,11 @@ public enum GameCondition {
 
     private static final int BLACKJACK_SCORE = 21;
 
-    public static GameCondition find(final int score) {
+    public static GameCondition find(final int score, final int cardCount) {
         if (score > BLACKJACK_SCORE) {
             return BUST;
         }
-        if (score == BLACKJACK_SCORE) {
+        if (score == BLACKJACK_SCORE && cardCount == 2) {
             return BLACKJACK;
         }
         return HIT;

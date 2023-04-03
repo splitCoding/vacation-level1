@@ -8,15 +8,16 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class GameConditionTest {
 
-    @DisplayName("점수에 따른 참가자의 상태를 반환한다.")
-    @ParameterizedTest(name = "{0}점은 {1}이다.")
+    @DisplayName("점수와 카드 갯수에 따른 참가자의 상태를 반환한다.")
+    @ParameterizedTest(name = "{1} 개의 카드로 {0} 점일 떄 참가자의 상태는 {2}이다.")
     @CsvSource(value = {
-        "20:HIT",
-        "21:BLACKJACK",
-        "22:BUST",
+        "20:2:HIT",
+        "21:2:BLACKJACK",
+        "21:3:HIT",
+        "22:2:BUST",
     }, delimiter = ':')
-    void find(int score, GameCondition expectedCondition) {
-        GameCondition gameCondition = GameCondition.find(score);
+    void find(int score, int cardCount, GameCondition expectedCondition) {
+        GameCondition gameCondition = GameCondition.find(score, cardCount);
         Assertions.assertThat(gameCondition).isEqualTo(expectedCondition);
     }
 }
