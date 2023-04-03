@@ -21,7 +21,11 @@ public final class BettingCondition {
         this.gameResult = gameResult;
     }
 
-    public int getBenefit() {
-        return gameResult.getBenefit(bettingAmount.getAmount());
+    public int getBenefit(final GameCondition gameCondition) {
+        int benefit = gameResult.getBenefit(bettingAmount.getAmount());
+        if (gameCondition == GameCondition.BLACKJACK && gameResult == GameResult.WIN) {
+            benefit += benefit / 2;
+        }
+        return benefit;
     }
 }

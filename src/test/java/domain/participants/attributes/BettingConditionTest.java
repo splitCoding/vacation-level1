@@ -45,15 +45,16 @@ class BettingConditionTest {
     }
 
     @DisplayName("업데이트한 게임 결과에 따른 수익을 반환한다.")
-    @ParameterizedTest(name = "게임결과가 {0}일 때 수익은 {1}이다.")
+    @ParameterizedTest(name = "배팅 금액이 1000원, 플레이어의 상태가 {0}, 게임결과가 {1}일 때 수익은 {2}이다.")
     @CsvSource(value = {
-        "WIN:1000",
-        "DRAW:0",
-        "LOSE:-1000"
+        "BLACKJACK:WIN:1500",
+        "HIT:WIN:1000",
+        "HIT:DRAW:0",
+        "HIT:LOSE:-1000"
     }, delimiter = ':')
-    void getBenefit(final GameResult gameResult, final int expectBenefit) {
+    void getBenefit(final GameCondition gameCondition, final GameResult gameResult, final int expectBenefit) {
         final BettingCondition bettingCondition = new BettingCondition(BettingAmount.of(1000));
         bettingCondition.updateGameResult(gameResult);
-        Assertions.assertThat(bettingCondition.getBenefit()).isEqualTo(expectBenefit);
+        Assertions.assertThat(bettingCondition.getBenefit(gameCondition)).isEqualTo(expectBenefit);
     }
 }
