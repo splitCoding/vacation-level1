@@ -1,6 +1,8 @@
 package domain.participants;
 
 import domain.deck.card.Card;
+import domain.participants.attributes.BettingAmount;
+import domain.participants.attributes.BettingCondition;
 import domain.participants.attributes.GameCondition;
 import domain.participants.attributes.Hand;
 import java.util.List;
@@ -8,9 +10,11 @@ import java.util.List;
 public class Player implements Participant {
 
     private final Hand hand;
+    private final BettingCondition bettingCondition;
 
-    public Player() {
+    public Player(final BettingAmount bettingAmount) {
         hand = Hand.empty();
+        this.bettingCondition = new BettingCondition(bettingAmount);
     }
 
     @Override
