@@ -1,8 +1,5 @@
-package domain.participants.attributes;
+package domain.participants.attributes.bettingCondition;
 
-import domain.participants.attributes.bettingCondition.BettingAmount;
-import domain.participants.attributes.bettingCondition.BettingCondition;
-import domain.participants.attributes.bettingCondition.GameResult;
 import domain.participants.attributes.hand.GameCondition;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
