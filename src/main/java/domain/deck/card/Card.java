@@ -62,6 +62,14 @@ public enum Card {
         this.denomination = denomination;
     }
 
+    public static boolean isAce(Card card) {
+        return card.denomination.equals(Denomination.ACE);
+    }
+
+    public int getScore() {
+        return denomination.getScore();
+    }
+
     public Suit getSuit() {
         return suit;
     }
