@@ -19,7 +19,7 @@ public final class Deck {
     }
 
     public Card draw() {
-        if (cards.size() == 0) {
+        if (cards.isEmpty()) {
             throw new RuntimeException("더 이상 남은 카드가 없습니다.");
         }
         return cards.remove(0);
