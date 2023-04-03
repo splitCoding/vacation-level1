@@ -14,7 +14,7 @@ public final class Deck {
         this.shuffleStrategy = shuffleStrategy;
     }
 
-    public void shuffle() {
+    private void shuffle() {
         shuffleStrategy.shuffle(cards);
     }
 
@@ -22,6 +22,7 @@ public final class Deck {
         if (cards.isEmpty()) {
             throw new RuntimeException("더 이상 남은 카드가 없습니다.");
         }
+        shuffle();
         return cards.remove(0);
     }
 }

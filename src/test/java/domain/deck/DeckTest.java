@@ -15,7 +15,6 @@ class DeckTest {
     @Test
     void drawWhenOneCardExist() {
         final Deck deck = new Deck(List.of(Card.SPADE_ACE), testShuffleStrategy);
-        deck.shuffle();
         final Card draw = deck.draw();
         Assertions.assertThat(draw).isEqualTo(Card.SPADE_ACE);
     }
@@ -24,7 +23,6 @@ class DeckTest {
     @Test
     void throwWhenCardEmpty() {
         final Deck deck = new Deck(List.of(), testShuffleStrategy);
-        deck.shuffle();
         Assertions.assertThatThrownBy(deck::draw)
             .isInstanceOf(RuntimeException.class);
     }
@@ -33,7 +31,6 @@ class DeckTest {
     @Test
     void drawWhenAllCardExist() {
         final Deck deck = new Deck(List.of(Card.HEART_FIVE, Card.SPADE_ACE), testShuffleStrategy);
-        deck.shuffle();
         final Card draw = deck.draw();
         Assertions.assertThat(draw).isEqualTo(Card.HEART_FIVE);
     }
