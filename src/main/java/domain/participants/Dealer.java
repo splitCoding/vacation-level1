@@ -4,7 +4,7 @@ import domain.deck.card.Card;
 import domain.participants.attributes.hand.Hand;
 import java.util.List;
 
-public class Dealer implements Participant {
+public final class Dealer implements Participant {
 
     private static final int INITIAL_CARD_COUNT = 2;
     private static final int DEALER_THRESHOLDS = 17;

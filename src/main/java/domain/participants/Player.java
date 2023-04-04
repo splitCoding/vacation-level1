@@ -7,8 +7,9 @@ import domain.participants.attributes.hand.GameCondition;
 import domain.participants.attributes.hand.Hand;
 import java.util.List;
 
-public class Player implements Participant {
+public final class Player implements Participant {
 
+    private static final int INITIAL_CARD_COUNT = 2;
     private final Hand hand;
     private final BettingCondition bettingCondition;
 
@@ -29,7 +30,7 @@ public class Player implements Participant {
     @Override
     public List<Card> showInitialCards() {
         final List<Card> cards = hand.getCards();
-        if (cards.size() < 2) {
+        if (cards.size() < INITIAL_CARD_COUNT) {
             throw new IllegalStateException("시작 카드를 지급받지 않았습니다.");
         }
         return List.of(cards.get(0), cards.get(1));

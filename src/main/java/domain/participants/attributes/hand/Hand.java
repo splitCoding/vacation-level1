@@ -4,7 +4,7 @@ import domain.deck.card.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hand {
+public final class Hand {
 
     private final List<Card> cards;
     private Score score;

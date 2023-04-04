@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface Participant {
 
-    void drawCard(Card card);
+    void drawCard(final Card card);
 
     List<Card> showInitialCards();
 

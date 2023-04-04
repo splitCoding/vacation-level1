@@ -3,7 +3,7 @@ package domain.participants.attributes.hand;
 import domain.deck.card.Card;
 import java.util.List;
 
-public class Score {
+public final class Score {
 
     private static final int BLACKJACK_SCORE = 21;
     private static final int ACE_BONUS_SCORE = 10;

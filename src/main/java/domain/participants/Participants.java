@@ -10,9 +10,9 @@ public final class Participants {
     private final Dealer dealer;
     private final Map<Name, Player> players; //중복 이름 처리해야 함
 
-    private Participants(Dealer dealer, Map<Name, Player> players) {
+    private Participants(final Dealer dealer, final Map<Name, Player> players) {
         this.dealer = dealer;
-        this.players = players;
+        this.players = new HashMap<>(players);
     }
 
     public static Participants of(final List<Name> names, final List<Player> players) {
