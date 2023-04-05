@@ -12,7 +12,7 @@ class GameConditionTest {
     @CsvSource(value = {
         "20:2:HIT",
         "21:2:BLACKJACK",
-        "21:3:HIT",
+        "21:3:STAND",
         "22:2:BUST",
     }, delimiter = ':')
     void find(int score, int cardCount, GameCondition expectedCondition) {

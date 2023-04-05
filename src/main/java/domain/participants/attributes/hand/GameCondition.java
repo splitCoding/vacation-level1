@@ -15,6 +15,9 @@ public enum GameCondition {
         if (score == BLACKJACK_SCORE && cardCount == 2) {
             return BLACKJACK;
         }
+        if (score == BLACKJACK_SCORE) {
+            return STAND;
+        }
         return HIT;
     }
 }
