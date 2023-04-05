@@ -5,10 +5,9 @@ import domain.deck.card.Card;
 import domain.participants.Dealer;
 import domain.participants.Participant;
 import domain.participants.Participants;
-import domain.participants.Player;
+import domain.participants.players.Player;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class BlackjackGame {
 
@@ -30,36 +29,36 @@ public class BlackjackGame {
         participant.drawCard(deck.draw());
     }
 
-    public boolean isWaitingPlayerExist() {
-        return participants.getPlayers()
-            .stream()
-            .anyMatch(Player::canGetMoreCard);
+    public boolean isNotEnd() {
+        return participants.isWaitingPlayerExist();
     }
 
     public Player getCurrentPlayer() {
-        final List<Player> players = participants.getPlayers();
-        return players.stream()
-            .filter(Player::canGetMoreCard)
-            .findFirst()
-            .orElseThrow(() -> new IllegalStateException("더 이상 게임을 진행할 플레이어가 없습니다."));
+        return participants.getCurrentPlayer();
     }
 
-    public void playTurn(final Player player, final boolean getMoreCard) {
-        if (getMoreCard) {
+    public String getCurrentPlayerName() {
+        return participants.getCurrentPlayerName();
+    }
+
+    public void playTurn(final Player player, final GetMoreCardCommand getMoreCardCommand) {
+        if (getMoreCardCommand == GetMoreCardCommand.YES) {
             player.drawCard(deck.draw());
             return;
         }
         player.drawCard(null);
     }
 
-    public void dealerPlay() {
-        final Dealer dealer = participants.getDealer();
-        while (dealer.canGetMoreCard()) {
-            dealer.drawCard(deck.draw());
-        }
+    public boolean isDealerNeedMoreCard() {
+        return participants.getDealer().canGetMoreCard();
     }
 
-    public int getDealerScore() {
-        return participants.getDealer().getScore();
+    public void dealerPlay() {
+        final Dealer dealer = participants.getDealer();
+        dealer.drawCard(deck.draw());
+    }
+
+    public Participants getParticipants() {
+        return participants;
     }
 }

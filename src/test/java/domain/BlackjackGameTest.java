@@ -1,10 +1,12 @@
 package domain;
 
+import domain.deck.card.Card;
 import domain.participants.Dealer;
 import domain.participants.Participants;
-import domain.participants.Player;
 import domain.participants.attributes.Name;
 import domain.participants.attributes.bettingCondition.BettingAmount;
+import domain.participants.players.Player;
+import domain.participants.players.Players;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -12,12 +14,14 @@ import org.junit.jupiter.api.Test;
 
 class BlackjackGameTest {
 
-    private final Participants participants = Participants.of(
-        List.of(
-            new Name("split")
-        ),
-        List.of(
-            new Player(BettingAmount.of(1000))
+    private final Participants participants = new Participants(
+        Players.of(
+            List.of(
+                new Name("split")
+            ),
+            List.of(
+                new Player(BettingAmount.of("1000"))
+            )
         )
     );
     private final BlackjackGame blackjackGame = new BlackjackGame(participants);
@@ -35,15 +39,15 @@ class BlackjackGameTest {
     @DisplayName("게임을 기다리는 참가자가 있는지 반환한다. (있을 떄)")
     @Test
     void isWaitingPlayerExist() {
-        Assertions.assertThat(blackjackGame.isWaitingPlayerExist()).isTrue();
+        Assertions.assertThat(blackjackGame.isNotEnd()).isTrue();
     }
 
     @DisplayName("게임을 기다리는 참가자가 있는지 반환한다. (없을 떄)")
     @Test
     void isWaitingPlayerNotExist() {
         final Player currentPlayer = blackjackGame.getCurrentPlayer();
-        blackjackGame.playTurn(currentPlayer, false);
-        Assertions.assertThat(blackjackGame.isWaitingPlayerExist()).isFalse();
+        blackjackGame.playTurn(currentPlayer, GetMoreCardCommand.NO);
+        Assertions.assertThat(blackjackGame.isNotEnd()).isFalse();
     }
 
     @DisplayName("게임을 진행할 수 있는 참가자를 반환한다.")
@@ -57,7 +61,7 @@ class BlackjackGameTest {
     @Test
     void playTurnGetCard() {
         final Player currentPlayer = blackjackGame.getCurrentPlayer();
-        blackjackGame.playTurn(currentPlayer, true);
+        blackjackGame.playTurn(currentPlayer, GetMoreCardCommand.YES);
         Assertions.assertThat(currentPlayer.getHand()).hasSize(1);
     }
 
@@ -65,15 +69,15 @@ class BlackjackGameTest {
     @Test
     void playTurnNotGettingCard() {
         final Player currentPlayer = blackjackGame.getCurrentPlayer();
-        blackjackGame.playTurn(currentPlayer, false);
+        blackjackGame.playTurn(currentPlayer, GetMoreCardCommand.NO);
         Assertions.assertThat(currentPlayer.getHand()).hasSize(0);
     }
 
-    @DisplayName("딜러가 더 이상 카드를 못 받을때까지 카드를 지급한다.")
+    @DisplayName("딜러에게 카드를 지급한다.")
     @Test
     void dealerPlay() {
         blackjackGame.dealerPlay();
-        final int dealerScore = blackjackGame.getDealerScore();
-        Assertions.assertThat(dealerScore).isGreaterThan(16);
+        final List<Card> hand = blackjackGame.getParticipants().getDealer().getHand();
+        Assertions.assertThat(hand).hasSize(1);
     }
 }
