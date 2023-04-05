@@ -21,4 +21,27 @@ class NameTest {
         final Name name = new Name(nameValue);
         Assertions.assertThat(name.getName()).isEqualTo(nameValue);
     }
+
+    @DisplayName("이름이 null 일 경우 오류를 반환한다.")
+    @Test
+    void getNameNull() {
+        Assertions.assertThatThrownBy(() -> new Name(null))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이름이 공백으로 이루어져 있을 경우 오류를 반환한다.")
+    @Test
+    void getNameBlank() {
+        Assertions.assertThatThrownBy(() -> new Name("    "))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("이름의 값이 같으면 같은 Name객체로 판단된다.")
+    @Test
+    void equals() {
+        final String nameValue = "split";
+        final Name firstSplit = new Name(nameValue);
+        final Name secondSplit = new Name(nameValue);
+        Assertions.assertThat(firstSplit.equals(secondSplit)).isTrue();
+    }
 }
