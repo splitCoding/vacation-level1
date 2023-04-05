@@ -57,6 +57,13 @@ class BlackjackGameTest {
         Assertions.assertThat(currentPlayer.canGetMoreCard()).isTrue();
     }
 
+    @DisplayName("게임을 진행할 수 있는 참가자의 이름을 반환한다.")
+    @Test
+    void getCurrentPlayerName() {
+        final String currentPlayerName = blackjackGame.getCurrentPlayerName();
+        Assertions.assertThat(currentPlayerName).isEqualTo("split");
+    }
+
     @DisplayName("플레이어와 카드 지급 여부를 이용해 플레이어의 턴을 진행한다. ( 카드를 지급 받을 떄 )")
     @Test
     void playTurnGetCard() {
@@ -73,11 +80,18 @@ class BlackjackGameTest {
         Assertions.assertThat(currentPlayer.getHand()).hasSize(0);
     }
 
+    @DisplayName("딜러가 카드가 더 필요한지 반환한다.")
+    @Test
+    void dealerCanGetMoreCard() {
+        Assertions.assertThat(blackjackGame.isDealerNeedMoreCard()).isTrue();
+    }
+
     @DisplayName("딜러에게 카드를 지급한다.")
     @Test
     void dealerPlay() {
         blackjackGame.dealerPlay();
-        final List<Card> hand = blackjackGame.getParticipants().getDealer().getHand();
+        final List<Card> hand = blackjackGame.getParticipants()
+            .getDealerHand();
         Assertions.assertThat(hand).hasSize(1);
     }
 }
