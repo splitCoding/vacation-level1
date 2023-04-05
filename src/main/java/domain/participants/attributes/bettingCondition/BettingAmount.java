@@ -9,9 +9,14 @@ public final class BettingAmount {
         this.amount = amount;
     }
 
-    public static BettingAmount of(final int amount) {
-        validate(amount);
-        return new BettingAmount(amount);
+    public static BettingAmount of(final String amountInput) {
+        try {
+            final int amount = Integer.parseInt(amountInput);
+            validate(amount);
+            return new BettingAmount(amount);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("배팅금액은 숫자여야 합니다.");
+        }
     }
 
     private static void validate(final int amount) {
