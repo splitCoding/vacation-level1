@@ -2,10 +2,13 @@ package domain.participants;
 
 import domain.deck.card.Card;
 import domain.participants.attributes.bettingCondition.BettingAmount;
+import domain.participants.attributes.bettingCondition.GameResult;
 import domain.participants.players.Player;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PlayerTest {
 
@@ -61,5 +64,18 @@ class PlayerTest {
         player.drawCard(Card.CLOVER_ACE);
         player.drawCard(Card.CLOVER_FIVE);
         Assertions.assertThat(player.showInitialCards()).containsExactly(Card.CLOVER_ACE, Card.CLOVER_FIVE);
+    }
+
+    @DisplayName("플레이어의 게임 결과에 따른 수익을 반환한다.")
+    @ParameterizedTest(name = "배팅금액이 1000원아고 결과가 {0} 일 때 수익은 {1}이다 ")
+    @CsvSource(value = {
+        "WIN:1000",
+        "DRAW:0",
+        "LOSE:-1000"
+    }, delimiter = ':')
+    void showBenefit(final GameResult gameResult, final int expectBenefit) {
+        Player player = new Player(BettingAmount.of("1000"));
+        player.updateGameResult(gameResult);
+        Assertions.assertThat(player.getBenefit()).isEqualTo(expectBenefit);
     }
 }
