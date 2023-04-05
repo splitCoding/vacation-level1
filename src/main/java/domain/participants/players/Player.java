@@ -41,11 +41,23 @@ public final class Player implements Participant {
         return hand.getGameCondition() == GameCondition.HIT;
     }
 
+    public void updateGameResult(final GameResult gameResult) {
+        bettingCondition.updateGameResult(gameResult);
+    }
+
     public List<Card> getHand() {
         return hand.getCards();
     }
 
     public int getScore() {
         return hand.getScore();
+    }
+
+    public GameCondition getGameCondition() {
+        return hand.getGameCondition();
+    }
+
+    public int getBenefit() {
+        return bettingCondition.getBenefit(hand.getGameCondition());
     }
 }

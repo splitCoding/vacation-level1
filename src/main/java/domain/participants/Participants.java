@@ -1,29 +1,86 @@
 package domain.participants;
 
+import domain.deck.card.Card;
 import domain.participants.attributes.Name;
-import java.util.HashMap;
+import domain.participants.players.Player;
+import domain.participants.players.Players;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class Participants {
 
+    private static final String DEALER_NAME = "딜러";
     private final Dealer dealer;
-    private final Map<Name, Player> players; //중복 이름 처리해야 함
+    private final Players players;
 
-    private Participants(final Dealer dealer, final Map<Name, Player> players) {
-        this.dealer = dealer;
-        this.players = new HashMap<>(players);
+    public Participants(final Players players) {
+        this.dealer = new Dealer();
+        this.players = players;
     }
 
-    public static Participants of(final List<Name> names, final List<Player> players) {
-        if (names.size() != players.size()) {
-            throw new IllegalStateException("이름과 플레이어의 짝이 맞지 않습니다.");
-        }
-        final Map<Name, Player> playersMap = new HashMap<>();
-        for (int index = 0; index < names.size(); index++) {
-            playersMap.put(names.get(index), players.get(index));
-        }
-        return new Participants(new Dealer(), playersMap);
+    public String getCurrentPlayerName() {
+        final int currentPlayerNameIndex = players.getPlayers().indexOf(getCurrentPlayer());
+        return players.getNames()
+            .get(currentPlayerNameIndex)
+            .getName();
+    }
+
+    public Player getCurrentPlayer() {
+        return players.getPlayers()
+            .stream()
+            .filter(Player::canGetMoreCard)
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException("모든 플레이어가 게임을 진행했습니다."));
+    }
+
+    public boolean isWaitingPlayerExist() {
+        return players.getPlayers()
+            .stream()
+            .anyMatch(Player::canGetMoreCard);
+    }
+
+    public String getDealerName() {
+        return DEALER_NAME;
+    }
+
+    public List<String> getPlayerNames() {
+        return players.getNames()
+            .stream()
+            .map(Name::getName)
+            .collect(Collectors.toList());
+    }
+
+    public List<Card> getDealerInitializeCards() {
+        return dealer.showInitialCards();
+    }
+
+    public List<List<Card>> getPlayersInitializeCards() {
+        return players.getPlayers()
+            .stream()
+            .map(Player::showInitialCards)
+            .collect(Collectors.toList());
+    }
+
+    public List<Card> getDealerHand() {
+        return dealer.getHand();
+    }
+
+    public List<List<Card>> getPlayersHand() {
+        return players.getPlayers()
+            .stream()
+            .map(Player::getHand)
+            .collect(Collectors.toList());
+    }
+
+    public int getDealerScore() {
+        return dealer.getScore();
+    }
+
+    public List<Integer> getPlayersScore() {
+        return players.getPlayers()
+            .stream()
+            .map(Player::getScore)
+            .collect(Collectors.toList());
     }
 
     public Dealer getDealer() {
@@ -31,6 +88,6 @@ public final class Participants {
     }
 
     public List<Player> getPlayers() {
-        return List.copyOf(players.values());
+        return List.copyOf(players.getPlayers());
     }
 }
