@@ -1,8 +1,10 @@
-package domain.participants;
+package domain.participants.players;
 
 import domain.deck.card.Card;
+import domain.participants.Participant;
 import domain.participants.attributes.bettingCondition.BettingAmount;
 import domain.participants.attributes.bettingCondition.BettingCondition;
+import domain.participants.attributes.bettingCondition.GameResult;
 import domain.participants.attributes.hand.GameCondition;
 import domain.participants.attributes.hand.Hand;
 import java.util.List;
