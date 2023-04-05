@@ -1,6 +1,7 @@
 package domain.participants;
 
 import domain.deck.card.Card;
+import domain.participants.attributes.hand.GameCondition;
 import domain.participants.attributes.hand.Hand;
 import java.util.List;
 
@@ -43,5 +44,9 @@ public final class Dealer implements Participant {
 
     public int getScore() {
         return hand.getScore();
+    }
+
+    public GameCondition getGameCondition() {
+        return hand.getGameCondition();
     }
 }
