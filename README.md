@@ -88,3 +88,16 @@
     - [ ] END : 게임을 종료한다
     - [ ] STATUS : 점수를 조회한다.
     - [ ] MOVE : 기물을 움직인다 ( start, end 위치에 대한 추가 입력이 존재한다.)
+
+### 테이블 생성 쿼리
+
+```
+create table board (
+    id int not null auto_increment primary key,
+    board_row int not null,
+    board_column int not null,
+    piece varchar(20) not null,
+    camp varchar(20) not null,
+    turn varchar(20) not null
+)
+```
